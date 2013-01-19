@@ -17,5 +17,17 @@ class Ant
         fib(n - 1) + fib(n - 2)
       end
     end
+
+    def dfs(n, a, k, i, sum)
+      if i == n
+        sum == k
+      elsif dfs(n, a, k, i + 1, sum)
+        true
+      elsif dfs(n, a, k, i + 1, sum + a[i])
+        true
+      else
+        false
+      end
+    end
   end
 end

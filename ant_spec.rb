@@ -37,4 +37,14 @@ describe Ant do
       Ant.fib(5).should eq 5
     end
   end
+
+  describe "#dfs" do
+    it "nに4, aに[1, 2, 4, 7], kに13 が渡された場合、trueになること" do
+      Ant.dfs(4, [1, 2, 4, 7], 13, 0, 0).should be_true
+    end
+
+    it "nに4, aに[1, 2, 4, 7], kに15 が渡された場合、falseになること" do
+      Ant.dfs(4, [1, 2, 4, 7], 15, 0, 0).should be_false
+    end
+  end
 end
