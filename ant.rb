@@ -17,5 +17,23 @@ class Ant
         fib(n - 1) + fib(n - 2)
       end
     end
+
+    def dfs(a, k)
+      n = a.length
+
+      dfs_fanc = lambda do |fanc, i, sum|
+        if i == n
+          sum == k
+        elsif fanc.call(fanc, i + 1, sum)
+          true
+        elsif fanc.call(fanc, i + 1, sum + a[i])
+          true
+        else
+          false
+        end
+      end
+
+      dfs_fanc.call(dfs_fanc, 0, 0)
+    end
   end
 end
