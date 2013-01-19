@@ -36,11 +36,11 @@ class Ant
       dfs_fanc.call(dfs_fanc, 0, 0)
     end
 
-    def dfs_pool(garden)
-      garden = garden.transpose
+    def count_pool(garden)
+      n = garden.length
+      m = garden[0].length
 
-      n = garden[0].length
-      m = garden.length
+      garden = garden.transpose
 
       dfs = lambda do |fanc, x, y|
         garden[x][y] = '.'

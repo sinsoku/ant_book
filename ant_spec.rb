@@ -64,7 +64,7 @@ describe Ant do
         %w(. W . W . . . . . . W .),
         %w(. . W . . . . . . . W .),
       ]
-      Ant.dfs_pool(garden).should eq 3
+      Ant.count_pool(garden).should eq 3
     end
   end
 end
