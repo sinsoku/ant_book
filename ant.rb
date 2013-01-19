@@ -18,12 +18,13 @@ class Ant
       end
     end
 
-    def dfs(n, a, k, i, sum)
+    def dfs(a, k, i, sum)
+      n = a.length
       if i == n
         sum == k
-      elsif dfs(n, a, k, i + 1, sum)
+      elsif dfs(a, k, i + 1, sum)
         true
-      elsif dfs(n, a, k, i + 1, sum + a[i])
+      elsif dfs(a, k, i + 1, sum + a[i])
         true
       else
         false
