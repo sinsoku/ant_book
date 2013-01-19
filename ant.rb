@@ -35,5 +35,38 @@ class Ant
 
       dfs_fanc.call(dfs_fanc, 0, 0)
     end
+
+    def dfs_pool(garden)
+      garden = garden.transpose
+
+      n = garden[0].length
+      m = garden.length
+
+      dfs = lambda do |fanc, x, y|
+        garden[x][y] = '.'
+        [x - 1, x, x + 1].each do |dx|
+          next if dx < 0 or n <= dx
+
+          [y - 1, y, y + 1].each do |dy|
+            next if dy < 0 or m <= dy
+
+            if garden[dx][dy] == 'W'
+              fanc.call(fanc, dx, dy)
+            end
+          end
+        end
+      end
+
+      res = 0
+      n.times do |x|
+        m.times do |y|
+          if garden[x][y] == 'W'
+            dfs.call(dfs, x, y)
+            res += 1
+          end
+        end
+      end
+      res
+    end
   end
 end
