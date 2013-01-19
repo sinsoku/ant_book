@@ -49,4 +49,22 @@ describe Ant do
       Ant.dfs(a, 15).should be_false
     end
   end
+
+  describe "#dfs_pool" do
+    it "庭の水たまりが3つであること" do
+      garden = [
+        %w(W . . . . . . . . W W .),
+        %w(. W W W . . . . . W W W),
+        %w(. . . . W W . . . W W .),
+        %w(. . . . . . . . . W W .),
+        %w(. . . . . . . . . W . .),
+        %w(. . W . . . . . . W . .),
+        %w(. W . W . . . . . W W .),
+        %w(W . W . W . . . . . W .),
+        %w(. W . W . . . . . . W .),
+        %w(. . W . . . . . . . W .),
+      ]
+      Ant.dfs_pool(garden).should eq 3
+    end
+  end
 end
