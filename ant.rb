@@ -68,5 +68,51 @@ class Ant
       end
       res
     end
+
+    def bfs(maze)
+      distances = {}
+      n = maze[0].length
+      m = maze.length
+      maze = maze.transpose
+      start = nil
+      goal = nil
+
+      n.times do |x|
+        m.times do |y|
+          if maze[x][y] == 'S'
+            start = [x, y]
+            distances[start] = 0
+          elsif maze[x][y] == 'G'
+            goal = [x, y]
+          end
+        end
+      end
+
+      is_move = lambda do |pos|
+        x = pos[0]
+        y = pos[1]
+        char = maze[x][y] if maze[x]
+        char != nil && char != '#'
+      end
+
+      fanc = lambda do |fanc, pos|
+        if pos != goal
+          r_pos = [pos[0] + 1, pos[1]]
+          l_pos = [pos[0] - 1, pos[1]]
+          d_pos = [pos[0], pos[1] + 1]
+          u_pos = [pos[0], pos[1] - 1]
+
+          [r_pos, l_pos, d_pos, u_pos].each do |n_pos|
+            if is_move.call(n_pos) && !distances.key?(n_pos)
+              distances[n_pos] = distances[pos] + 1
+              fanc.call(fanc, n_pos)
+            end
+          end
+        end
+      end
+      fanc.call(fanc, start)
+
+      distances[goal]
+    end
   end
 end
