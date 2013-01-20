@@ -67,4 +67,22 @@ describe Ant do
       Ant.count_pool(garden).should eq 3
     end
   end
+
+  describe "#bfs" do
+    it "迷路のゴールまでの最小ターン数が22であること" do
+      maze = [
+        %w(# S # # # # # # . #),
+        %w(. . . . . . # . . #),
+        %w(. # . # # . # # . #),
+        %w(. # . . . . . . . .),
+        %w(# # . # # . # # # #),
+        %w(. . . . # . . . . #),
+        %w(. # # # # # # # . #),
+        %w(. . . . # . . . . .),
+        %w(. # # # # . # # # .),
+        %w(. . . . # . . . G #),
+      ]
+      Ant.bfs(maze).should eq 22
+    end
+  end
 end
